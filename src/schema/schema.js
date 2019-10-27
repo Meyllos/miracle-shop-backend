@@ -7,6 +7,7 @@ export let schema =buildSchema(`
     getAllUsers:[Response]
     login(email:String!, password: String!): AuthData
     getItem(id: Int!): ViewOneItemResponse
+    getAllItems:[ItemResponse]
   }
 
   type Mutation {

@@ -6,6 +6,7 @@ import session from 'express-session';
 import express_graphql from "express-graphql";
 import { schema } from "./schema/schema";
 import {signup, login, getAllUsers} from './resolvers/User';
+import {createItem, getItem, getAllItems} from './resolvers/Item';
 import config from './db/config/envirnoment';
 
 //Root resolver
@@ -13,7 +14,10 @@ let root = {
   message: () => 'Welcome to Miracle Shop APIs!',
   signup: signup,
   login,
-  getAllUsers
+  getAllUsers,
+  createItem,
+  getItem,
+  getAllItems
 }
 const app = express(); // setup express application
 
