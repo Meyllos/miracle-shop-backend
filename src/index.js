@@ -5,13 +5,15 @@ import cors from 'cors';
 import session from 'express-session';
 import express_graphql from "express-graphql";
 import { schema } from "./schema/schema";
-import {signup} from './resolvers/User';
+import {signup, login, getAllUsers} from './resolvers/User';
 import config from './db/config/envirnoment';
 
 //Root resolver
 let root = {
   message: () => 'Welcome to Miracle Shop APIs!',
-  signup: signup
+  signup: signup,
+  login,
+  getAllUsers
 }
 const app = express(); // setup express application
 
