@@ -2,28 +2,35 @@ import 'regenerator-runtime';
 import express from 'express';
 import logger from 'morgan';
 import cors from 'cors';
-
+import session from 'express-session';
 import express_graphql from "express-graphql";
-import { buildSchema } from "graphql";
-
-//GraphQL Schema
-
-let schema =buildSchema(`
-  type Query {
-    message: String
-  }
-`);
+import { schema } from "./schema/schema";
+import {signup, login, getAllUsers} from './resolvers/User';
+import {createItem, getItem, getAllItems} from './resolvers/Item';
+import config from './db/config/envirnoment';
 
 //Root resolver
 let root = {
-  message: () => 'Welcome to Miracle Shop APIs!'
+  message: () => 'Welcome to Miracle Shop APIs!',
+  signup: signup,
+  login,
+  getAllUsers,
+  createItem,
+  getItem,
+  getAllItems
 }
 const app = express(); // setup express application
 
 app.use(cors());
 app.use(logger('dev'));
 
-const port = 4000;
+app.use(session({
+  secret: config.secret,
+  resave: true,
+  saveUninitialized: true,
+  cookie: { secure: true }
+}));
+
 
 // Create an express server and a GraphQL endpoint
 app.use('/graphql', express_graphql({
@@ -32,8 +39,8 @@ app.use('/graphql', express_graphql({
   graphiql:true
 }));
 
-app.listen(port, () => {
-  console.log(`Server running at http://127.0.0.1:${port}/graphql`);
+app.listen(config.port, () => {
+  console.log(`Server running at http://127.0.0.1:${config.port}/graphql`);
 });
 
 export default app;

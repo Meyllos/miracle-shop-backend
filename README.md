@@ -13,9 +13,13 @@ Miracle Shop is a web application which allow a user to purchase, rent goods and
   
      ```npm run dev```
   
-  4. Use Postman to test api on ```localhost:4000/```
+  4. Use any browser, chrome is recomended  to test api on ```localhost:4000/graphql```
+
+  5. Pivotal Tracker board
+  ```https://www.pivotaltracker.com/n/projects/2408694```
   
  ## Run test
  To run the application test run the following command in terminal
  
  ```npm test```
+ 
